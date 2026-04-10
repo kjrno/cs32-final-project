@@ -16,8 +16,8 @@ user_symtpoms_3 = {"runny nose", "cough", "sore throat"}
 def score_conditions(user_symptoms, conditions):
     scores = {} #empty dictionary holds results
     for condition_name, condition_symptoms in conditions.items():
-        matched = condition_symptoms & user_symptoms
-        score = len(matched) / len(condition_symptoms)
+        matched = condition_symptoms & user_symptoms #finds symptoms that match with condition
+        score = len(matched) / len(condition_symptoms) #calculates percentage matched of total condition symptoms
         scores[condition_name] = score
     return scores
 
