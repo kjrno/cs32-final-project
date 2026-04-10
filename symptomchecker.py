@@ -1,12 +1,17 @@
 #
 diseases = {
     "Flu": {"fever", "cough", "body aches", "fatigue", "chills"},
-    "Cold": {"runny nose", "cough", "sore throat"}
+    "Cold": {"runny nose", "cough", "sore throat"},
+    "Strep Throat": {"sore throat", "fever", "difficulty swallowing"},
+    "Food Poisoning": {"nausea", "vomiting", "diarrhea", "abdominal pain"}
 
 
 } #sample diseases
 
-user_symptoms = {"fever", "cough"} #sample symptoms
+user_symptoms1 = {"fever", "cough"} #sample symptoms
+user_symptoms2 = {"nausea", "vomiting"}
+user_symtpoms_3 = {"runny nose", "cough", "sore throat"}
+
 
 def score_conditions(user_symptoms, diseases):
     scores = {} #empty dictionary holds results
