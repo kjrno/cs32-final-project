@@ -1,5 +1,5 @@
 #
-diseases = {
+conditions = {
     "Flu": {"fever", "cough", "body aches", "fatigue", "chills"},
     "Cold": {"runny nose", "cough", "sore throat"},
     "Strep Throat": {"sore throat", "fever", "difficulty swallowing"},
@@ -13,10 +13,13 @@ user_symptoms2 = {"nausea", "vomiting"}
 user_symtpoms_3 = {"runny nose", "cough", "sore throat"}
 
 
-def score_conditions(user_symptoms, diseases):
+def score_conditions(user_symptoms, conditions):
     scores = {} #empty dictionary holds results
-    for condition_name, condition_symptoms in diseases.items():
+    for condition_name, condition_symptoms in conditions.items():
         matched = condition_symptoms & user_symptoms
         score = len(matched) / len(condition_symptoms)
         scores[condition_name] = score
     return scores
+
+results = score_conditions(user_symptoms1, conditions)
+print(results)
