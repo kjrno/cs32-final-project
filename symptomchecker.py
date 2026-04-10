@@ -10,7 +10,7 @@ conditions = {
 
 user_symptoms1 = {"fever", "cough"} #sample symptoms
 user_symptoms2 = {"nausea", "vomiting"}
-user_symtpoms_3 = {"runny nose", "cough", "sore throat"}
+user_symptoms3 = {"runny nose", "cough", "sore throat"}
 
 
 def score_conditions(user_symptoms, conditions):
