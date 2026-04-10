@@ -7,3 +7,11 @@ diseases = {
 }
 
 user_symptoms = {"fever", "cough"}
+
+def score_conditions(user_symptoms, diseases):
+    scores = {}
+    for condition_name, condition_symptoms in diseases.items():
+        matched = condition_symptoms & user_symptoms
+        score = len(matched) / len(condition_symptoms)
+        scores[condition_name] = score
+    return scores
