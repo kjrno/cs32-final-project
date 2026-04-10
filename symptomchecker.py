@@ -5,4 +5,4 @@ diseases = {
 
 }
 
-user_symptoms =
+user_symptoms = {"fever", "cough"}
