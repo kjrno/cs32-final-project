@@ -4,9 +4,9 @@ diseases = {
     "Cold": {"runny nose", "cough", "sore throat"}
 
 
-} #Sa
+} #sample diseases
 
-user_symptoms = {"fever", "cough"}
+user_symptoms = {"fever", "cough"} #sample symptoms
 
 def score_conditions(user_symptoms, diseases):
     scores = {} #empty dictionary holds results
