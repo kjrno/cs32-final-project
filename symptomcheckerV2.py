@@ -32,7 +32,7 @@ strep = Condition(
 food_poisoning = Condition(
     "Food Poisoning",
     {"nausea", "vomiting", "diarrhea", "abdominal pain"}
-    []
+    ["Drink fluids", "]
 )
 
 conditions = [flu, cold, strep, food_poisoning]
