@@ -9,14 +9,12 @@ class Disease:
         return len(matched/len(self.symptoms))
 
 #Create objects from Disease
-conditions = {
-    "Flu": {"fever", "cough", "body aches", "fatigue", "chills"},
-    "Cold": {"runny nose", "cough", "sore throat"},
-    "Strep Throat": {"sore throat", "fever", "difficulty swallowing"},
-    "Food Poisoning": {"nausea", "vomiting", "diarrhea", "abdominal pain"}
+flu = Disease("Flu", {"fever", "cough", "body aches", "fatigue", "chills"})
+cold = Disease("Cold", {"runny nose", "cough", "sore throat"})
+strep = Disease("Strep Throat", {"sore throat", "fever", "difficulty swallowing"})
+food_poisoning = Disease("Food Poisoning", {"nausea", "vomiting", "diarrhea", "abdominal pain"})
 
-
-} #sample diseases
+#sample diseases
 
 user_symptoms1 = {"fever", "cough"} #sample symptoms
 user_symptoms2 = {"nausea", "vomiting"}
