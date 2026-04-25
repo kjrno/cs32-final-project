@@ -19,9 +19,21 @@ flu = Condition(
     {"fever", "cough", "body aches", "fatigue", "chills"},
     {"Rest", "Hydrate", "Acetminophen or ibuprofen", "Antiviral medication"}
 )
-cold = Condition("Cold", {"runny nose", "cough", "sore throat"})
-strep = Condition("Strep Throat", {"sore throat", "fever", "difficulty swallowing"})
-food_poisoning = Condition("Food Poisoning", {"nausea", "vomiting", "diarrhea", "abdominal pain"})
+cold = Condition(
+    "Cold",
+    {"runny nose", "cough", "sore throat"}
+    ["Rest", "Hydrate", "Gargle salt water", "Decongestants"]
+)
+strep = Condition(
+    "Strep Throat",
+    {"sore throat", "fever", "difficulty swallowing"}
+    ["Antibiotics", "Acetminophen or ibuprofen", "Hydration", "Rest"]
+)
+food_poisoning = Condition(
+    "Food Poisoning",
+    {"nausea", "vomiting", "diarrhea", "abdominal pain"}
+    []
+)
 
 conditions = [flu, cold, strep, food_poisoning]
 
