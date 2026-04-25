@@ -1,14 +1,14 @@
 #Revised using object-oriented programming
 class Condition:
-    def __init__(self, name, symptoms):
+    def __init__(self, name, symptoms, treatments):
         self.name = name
         self.symptoms = symptoms
 
     def score(self, user_symptoms):
-        matched = self.symtpoms & user_symptoms
-        return len(matched/len(self.symptoms))
+        matched = self.symptoms & user_symptoms
+        return len(matched)/len(self.symptoms)
 
-    def treatments(self):
+    def get_treatments(self):
         print(f'\nRecommended treatments for {self.name}:')
         for treatment in self.treatments:
             print(f' - {treatment}')
@@ -21,17 +21,17 @@ flu = Condition(
 )
 cold = Condition(
     "Cold",
-    {"runny nose", "cough", "sore throat"}
+    {"runny nose", "cough", "sore throat"},
     ["Rest", "Hydrate", "Gargle salt water", "Decongestants"]
 )
 strep = Condition(
     "Strep Throat",
-    {"sore throat", "fever", "difficulty swallowing"}
+    {"sore throat", "fever", "difficulty swallowing"},
     ["Antibiotics", "Acetminophen or ibuprofen", "Hydration", "Rest"]
 )
 food_poisoning = Condition(
     "Food Poisoning",
-    {"nausea", "vomiting", "diarrhea", "abdominal pain"}
+    {"nausea", "vomiting", "diarrhea", "abdominal pain"},
     ["Drink fluids", "Bland Diet", "Avoid irritants", "Over-the-counter medication"]
 )
 
@@ -42,7 +42,7 @@ user_symptoms2 = {"nausea", "vomiting"}
 user_symptoms3 = {"runny nose", "cough", "sore throat"}
 
 
-def score_all(user_symptoms, conditions):
+def score_all(user_symptoms, conditions): #Scores conidition based on symptoms
     scores = {}
     for condition in conditions:
         scores[condition.name] = condition.score(user_symptoms)
@@ -55,6 +55,6 @@ def diagnose(user_symptoms, conditions):
     best_match = max(results, key=results.get) #Finds condition with highest score
     for condition in conditions:
         if condition.name == best_match:
-            condition.treatments()
+            condition.get_treatments()
 
 diagnose(user_symptoms1, conditions)
