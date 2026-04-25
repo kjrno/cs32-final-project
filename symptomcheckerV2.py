@@ -1,5 +1,5 @@
 #Revised ussing object-oriented programming
-class Disease:
+class Condition:
     def __init__(self, name, symptoms):
         self.name = name
         self.symptoms = symptoms
@@ -9,11 +9,12 @@ class Disease:
         return len(matched/len(self.symptoms))
 
 #Create objects from Disease
-flu = Disease("Flu", {"fever", "cough", "body aches", "fatigue", "chills"})
-cold = Disease("Cold", {"runny nose", "cough", "sore throat"})
-strep = Disease("Strep Throat", {"sore throat", "fever", "difficulty swallowing"})
-food_poisoning = Disease("Food Poisoning", {"nausea", "vomiting", "diarrhea", "abdominal pain"})
+flu = Condition("Flu", {"fever", "cough", "body aches", "fatigue", "chills"})
+cold = Condition("Cold", {"runny nose", "cough", "sore throat"})
+strep = Condition("Strep Throat", {"sore throat", "fever", "difficulty swallowing"})
+food_poisoning = Condition("Food Poisoning", {"nausea", "vomiting", "diarrhea", "abdominal pain"})
 
+conditions = [flu, cold, strep, food_poisoning]
 #sample diseases
 
 user_symptoms1 = {"fever", "cough"} #sample symptoms
@@ -21,13 +22,11 @@ user_symptoms2 = {"nausea", "vomiting"}
 user_symptoms3 = {"runny nose", "cough", "sore throat"}
 
 
-def score_conditions(user_symptoms, conditions):
-    scores = {} #empty dictionary holds results
-    for condition_name, condition_symptoms in conditions.items():
-        matched = condition_symptoms & user_symptoms #finds symptoms that match with condition
-        score = len(matched) / len(condition_symptoms) #calculates percentage matched of total condition symptoms
-        scores[condition_name] = score
+def score_all(user_symptoms, conditions):
+    scores = {}
+    for condition in conditions:
+        scores[condition.name] = condition.score(user_symptoms)
     return scores
 
-results = score_conditions(user_symptoms1, conditions)
+results = score_all(user_symptoms1, conditions)
 print(results)
