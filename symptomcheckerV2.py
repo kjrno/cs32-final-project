@@ -14,7 +14,11 @@ class Condition:
             print(f' - {treatment}')
 
 #Create objects from Disease
-flu = Condition("Flu", {"fever", "cough", "body aches", "fatigue", "chills"})
+flu = Condition(
+    "Flu",
+    {"fever", "cough", "body aches", "fatigue", "chills"},
+    {"Rest", "Hydrate", "Acetminophen or ibuprofen", "Antiviral medication"}
+)
 cold = Condition("Cold", {"runny nose", "cough", "sore throat"})
 strep = Condition("Strep Throat", {"sore throat", "fever", "difficulty swallowing"})
 food_poisoning = Condition("Food Poisoning", {"nausea", "vomiting", "diarrhea", "abdominal pain"})
