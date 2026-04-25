@@ -3,6 +3,7 @@ class Condition:
     def __init__(self, name, symptoms, treatments):
         self.name = name
         self.symptoms = symptoms
+        self.treatments = treatments
 
     def score(self, user_symptoms):
         matched = self.symptoms & user_symptoms
@@ -50,9 +51,9 @@ def score_all(user_symptoms, conditions): #Scores conidition based on symptoms
 
 def diagnose(user_symptoms, conditions):
     results = score_all(user_symptoms, conditions)
-    print(results)
 
     best_match = max(results, key=results.get) #Finds condition with highest score
+    print(best_match)
     for condition in conditions:
         if condition.name == best_match:
             condition.get_treatments()
