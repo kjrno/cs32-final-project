@@ -11,7 +11,7 @@ class Condition:
     def treatments(self):
         print(f'\nRecommended treatments for {self.name}:')
         for treatment in self.treatments:
-            print(f' - {treatment})
+            print(f' - {treatment}')
 
 #Create objects from Disease
 flu = Condition("Flu", {"fever", "cough", "body aches", "fatigue", "chills"})
@@ -20,7 +20,6 @@ strep = Condition("Strep Throat", {"sore throat", "fever", "difficulty swallowin
 food_poisoning = Condition("Food Poisoning", {"nausea", "vomiting", "diarrhea", "abdominal pain"})
 
 conditions = [flu, cold, strep, food_poisoning]
-#sample diseases
 
 user_symptoms1 = {"fever", "cough"} #sample symptoms
 user_symptoms2 = {"nausea", "vomiting"}
@@ -32,6 +31,12 @@ def score_all(user_symptoms, conditions):
     for condition in conditions:
         scores[condition.name] = condition.score(user_symptoms)
     return scores
+
+def diagnose(user_symptoms, conditions):
+    results = score_all(user_symptoms, conditions)
+    print(results)
+
+    best_match = max(results, key=results.get) #Finds condition with highest score
 
 results = score_all(user_symptoms1, conditions)
 print(results)
