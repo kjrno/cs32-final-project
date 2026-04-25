@@ -1,4 +1,4 @@
-#Revised ussing object-oriented programming
+#Revised using object-oriented programming
 class Condition:
     def __init__(self, name, symptoms):
         self.name = name
@@ -32,7 +32,7 @@ strep = Condition(
 food_poisoning = Condition(
     "Food Poisoning",
     {"nausea", "vomiting", "diarrhea", "abdominal pain"}
-    ["Drink fluids", "]
+    ["Drink fluids", "Bland Diet", "Avoid irritants", "Over-the-counter medication"]
 )
 
 conditions = [flu, cold, strep, food_poisoning]
