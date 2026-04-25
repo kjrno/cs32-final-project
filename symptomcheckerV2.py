@@ -37,6 +37,8 @@ def diagnose(user_symptoms, conditions):
     print(results)
 
     best_match = max(results, key=results.get) #Finds condition with highest score
+    for condition in conditions:
+        if condition.name == best_match:
+            condition.treatments()
 
-results = score_all(user_symptoms1, conditions)
-print(results)
+diagnose(user_symptoms1, conditions)
