@@ -8,6 +8,11 @@ class Condition:
         matched = self.symtpoms & user_symptoms
         return len(matched/len(self.symptoms))
 
+    def treatments(self):
+        print(f'\nRecommended treatments for {self.name}:')
+        for treatment in self.treatments:
+            print(f' - {treatment})
+
 #Create objects from Disease
 flu = Condition("Flu", {"fever", "cough", "body aches", "fatigue", "chills"})
 cold = Condition("Cold", {"runny nose", "cough", "sore throat"})
