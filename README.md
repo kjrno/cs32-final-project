@@ -13,3 +13,6 @@ Can edit user_symptoms based on what set of symptoms you want to test.
 
 #Next Steps
 Create user-interface to have user input symptoms
+
+#External Contributors
+Used generative AI to help revise my code to be object-oriented
