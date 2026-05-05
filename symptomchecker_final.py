@@ -53,7 +53,7 @@ def score_all(user_symptoms, conditions): #Scores conidition based on symptoms
 #Create Flask web app
 app = Flask(__name__)
 
-@app.route("/") #
+@app.route("/") #Run home() when user visits the homepage
 def home():
     #Build checkboxes from symptoms
     checkboxes = ""
@@ -69,7 +69,7 @@ def home():
         <button type="submit">Diagnose</button>
     </form>
     """
-@app.route("/diagnose", methods=["POST"]) #Runs when form is submitted
+@app.route("/diagnose", methods=["POST"]) #Run diagnose() when form is submitted
 def diagnose():
     user_symptoms = set(request.form.getlist("symptoms")) #Gets checked symptoms from the form
 
