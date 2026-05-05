@@ -96,7 +96,7 @@ def diagnose():
     else:
         output += "<p>No matches found.</p>"
 
-    output += "<br><a href="/">Start over</a>"
+    output += '<br><a href="/">Start over</a>'
     return output
 
 if __name__ == "__main__":
