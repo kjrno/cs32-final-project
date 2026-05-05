@@ -58,7 +58,7 @@ def run_gui():
              font=("Arial", 12, "bold")).pack(pady=10)
 
     #Create dictionary mapping symptoms to its IntVar
-    symptoms_vars = {}
+    symptom_vars = {}
     for symptom in sorted(all_symptoms):
         var = tk.IntVar()
         tk.Checkbutton(root, text=symptom, variable=var).pack(anchor="w", padx=20)
@@ -72,23 +72,31 @@ def run_gui():
         #Collect checked symptoms
         user_symptoms = {s for s, v in symptom_vars.items() if v.get() == 1}
 
-def diagnose(user_symptoms, conditions):
-    results = score_all(user_symptoms, conditions)
-    ranked = sorted(results.items(), key = lambda x: x[1], reverse = True) #Sort based on score from largest to smallest
+        result_box.delte("1.0", tk.END) #Clears previous results
 
-    print("\nPossible Conditions:")
-    for name, score in ranked:
-        if score > 0:
-            print(f" - {name}: {score * 100:.1f}%") #Calculate percentage of likeliness
+        if not user_symptoms:
+            result_box.insert(tk.END, "Please select at least one symptom.")
+            return
 
-    best_match, best_score = ranked[0] #Gets best match
-    if best_score > 0:
-        for condition in conditions:
-            if condition.name == best_match:
-                condition.get_treatments()
-    else:
-        print("No matches found.")
+        results = score_all(user_symptoms, conditions)
+        ranked = sorted(results.items(), key = lambda x: x[1], reverse = True) #Sort based on score from largest to smallest
+
+        result_box.insert(tk.END, "Possible Conditions:\n")
+        for name, score in ranked:
+            if score > 0:
+                result_box.insert(tk.END, f" - {name}: {score * 100:.1f}%") #Calculate percentage of likeliness
+        best_match, best_score = ranked[0] #Gets best match
+        if best_score > 0:
+            for condition in conditions:
+                if condition.name == best_match:
+                    result_box.insert(tk.END, f"\nTreatments for {best_match}:\n")
+                    for t in condition.treatments:
+                        result_box.insert(tk.END, f" - {t}\n")
+        else:
+            result_box.insert(tk.END, "No matches found.")
+    tk.Button(root, text="Diagnose", command=on_diagnose).pack(pady=10)
+
+    root.mainloop()
 
 if __name__ == "__main__":
-    symptoms = user_questionaire()
-    diagnose(symptoms, conditions)
+    run_gui()
