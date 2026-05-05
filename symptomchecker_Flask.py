@@ -1,3 +1,12 @@
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    #Build checkboxes for symptoms
+    checkboxes = ""
+    for symptom in sorted
 #Revised using object-oriented programming
 class Condition:
     def __init__(self, name, symptoms, treatments):
