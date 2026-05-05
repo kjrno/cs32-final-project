@@ -44,20 +44,33 @@ all_symptoms = set()
 for c in conditions:
     all_symptoms |= c.symptoms #adds sypmtoms into all_symptoms
 
-def user_questionaire():
-    user_symptoms = set()
-    print("Answer Yes/No to each symptom:\n")
-    for symptom in sorted(all_symptoms):
-        answer = input(f"Do you have {symptom}? ").strip().lower()
-        if answer == "yes":
-            user_symptoms.add(symptom)
-    return user_symptoms
-
 def score_all(user_symptoms, conditions): #Scores conidition based on symptoms
     scores = {}
     for condition in conditions:
         scores[condition.name] = condition.score(user_symptoms)
     return scores
+
+def run_gui():
+    root = tk.Tk()
+    root.title("Symptom Checker")
+
+    tk.Label(root, text="Check all symptoms you have:",
+             font=("Arial", 12, "bold")).pack(pady=10)
+
+    #Create dictionary mapping symptoms to its IntVar
+    symptoms_vars = {}
+    for symptom in sorted(all_symptoms):
+        var = tk.IntVar()
+        tk.Checkbutton(root, text=symptom, variable=var).pack(anchor="w", padx=20)
+        symptom_vars[symptom] = var
+
+    #Box to display result
+    result_box = tk.Text(root, height=12, width=50)
+    result_box.pack(pady=10, padx=10)
+
+    def on_diagnose():
+        #Collect checked symptoms
+        user_symptoms = {s for s, v in symptom_vars.items() if v.get() == 1}
 
 def diagnose(user_symptoms, conditions):
     results = score_all(user_symptoms, conditions)
