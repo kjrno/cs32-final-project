@@ -59,12 +59,20 @@ def score_all(user_symptoms, conditions): #Scores conidition based on symptoms
 
 def diagnose(user_symptoms, conditions):
     results = score_all(user_symptoms, conditions)
+    ranked = sorted(results.items(), key = lambda x: x[1], reverse = True) #Sort based on score from largest to smallest
 
-    best_match = max(results, key=results.get) #Finds condition with highest score
-    print(best_match)
-    for condition in conditions:
-        if condition.name == best_match:
-            condition.get_treatments()
+    print("\nPossible Conditions:")
+    for name, score in ranked:
+        if score > 0:
+            print(f" - {name}: {score * 100}%") #Calculate percentage of likeliness
+            
+        best_match, best_score = ranked[0] #Gets best match
+        if best_score > 0:
+            for condition in conditions:
+                if condition.name == best_match:
+                    condition.get_treatments()
+        else:
+            print("No matches found.")
 
 if __name__ == "__main__":
     symptoms = user_questionaire()
