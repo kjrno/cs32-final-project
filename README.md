@@ -16,4 +16,4 @@ Create a user interface in an app that could be used on mobile devices to diagno
 
 # External Contributors
 Used generative AI to help revise my code to be object-oriented.
-Used generative AI to revise
+Used generative AI to revise my code and implement a Flask web user interface.

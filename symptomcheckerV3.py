@@ -40,7 +40,7 @@ conditions = [flu, cold, strep, food_poisoning]
 
 all_symptoms = set()
 for c in conditions:
-    all_symptoms |= c.symptoms #adds sypmtoms into all_symptoms
+    all_symptoms |= c.symptoms #adds symptoms into all_symptoms
 
 def user_questionaire():
     user_symptoms = set()
