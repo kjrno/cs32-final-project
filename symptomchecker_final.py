@@ -1,3 +1,5 @@
+import tkinter as tk #For user interface
+
 #Revised using object-oriented programming
 class Condition:
     def __init__(self, name, symptoms, treatments):
@@ -65,7 +67,7 @@ def diagnose(user_symptoms, conditions):
     for name, score in ranked:
         if score > 0:
             print(f" - {name}: {score * 100}%") #Calculate percentage of likeliness
-            
+
         best_match, best_score = ranked[0] #Gets best match
         if best_score > 0:
             for condition in conditions:
@@ -74,6 +76,3 @@ def diagnose(user_symptoms, conditions):
         else:
             print("No matches found.")
 
-if __name__ == "__main__":
-    symptoms = user_questionaire()
-    diagnose(symptoms, conditions)
