@@ -40,7 +40,14 @@ conditions = [flu, cold, strep, food_poisoning]
 
 all_symptoms = set()
 for c in conditions:
-    all_symptoms |= c.sypmtoms
+    all_symptoms |= c.symptoms #adds sypmtoms into all_symptoms
+
+def user_questionaire():
+    user_symptoms = set()
+    print("Answer Yes/No to each symptom:\n")
+    for symptom in sorted(all_symptoms):
+        answer = input(f"Do you have {symptom}? ").strip().lower()
+        if answer == "
 
 def score_all(user_symptoms, conditions): #Scores conidition based on symptoms
     scores = {}
