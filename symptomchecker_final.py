@@ -20,7 +20,7 @@ class Condition:
 flu = Condition(
     "Flu",
     {"fever", "cough", "body aches", "fatigue", "chills"},
-    {"Rest", "Hydrate", "Acetminophen or ibuprofen", "Antiviral medication"}
+    {"Rest", "Hydrate", "Acetaminophen or ibuprofen", "Antiviral medication"}
 )
 cold = Condition(
     "Cold",
