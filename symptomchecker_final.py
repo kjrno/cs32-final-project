@@ -53,7 +53,7 @@ def score_all(user_symptoms, conditions): #Scores conidition based on symptoms
 #Create Flask web app
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/") #
 def home():
     #Build checkboxes from symptoms
     checkboxes = ""
