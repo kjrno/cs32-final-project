@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request #Import Flask
 
 #Revised using object-oriented programming
 class Condition:
@@ -50,7 +50,7 @@ def score_all(user_symptoms, conditions): #Scores conidition based on symptoms
         scores[condition.name] = condition.score(user_symptoms)
     return scores
 
-#Flask web app
+#Create Flask web app
 app = Flask(__name__)
 
 @app.route("/")
@@ -58,7 +58,7 @@ def home():
     #Build checkboxes from symptoms
     checkboxes = ""
     for symptom in sorted(all_symptoms):
-        checkboxes += f'<input type="checkbox" name="symptoms" value="{symptom}"> {symptom}<br>'
+        checkboxes += f'<input type="checkbox" name="symptoms" value="{symptom}"> {symptom}<br>' #Builds one HTML checkbox for each symptom
 
     return f"""
     <h1>Symptom Checker</h1>
@@ -69,9 +69,9 @@ def home():
         <button type="submit">Diagnose</button>
     </form>
     """
-@app.route("/diagnose", methods=["POST"])
+@app.route("/diagnose", methods=["POST"]) #Runs when form is submitted
 def diagnose():
-    user_symptoms = set(request.form.getlist("symptoms"))
+    user_symptoms = set(request.form.getlist("symptoms")) #Gets checked symptoms from the form
 
     if not user_symptoms:
         return '<p>Please select at least one symtpom.</p><a href="/">Back</a>'
@@ -79,10 +79,10 @@ def diagnose():
     results = score_all(user_symptoms, conditions)
     ranked = sorted(results.items(), key = lambda x: x[1], reverse = True) #Sort based on score from largest to smallest
 
-    output = "<h1>Possible Conditions:</h1><ul>"
+    output = "<h1>Possible Conditions:</h1><ul>" #Builds results page
     for name, score in ranked:
         if score > 0:
-            output += f"<li>{name}: {score * 100:.1f}%</li>" #Calculate percentage of likeliness
+            output += f"<li>{name}: {score * 100:.1f}%</li>" #Adds each condition with percentage of likeliness
     output += "</ul>"
 
     best_match, best_score = ranked[0] #Gets best match
@@ -100,4 +100,4 @@ def diagnose():
     return output
 
 if __name__ == "__main__":
-   app.run(debug=True, host="0.0.0.0", port=5000)
+   app.run(debug=True, host="0.0.0.0", port=5000) #Starts the web server
