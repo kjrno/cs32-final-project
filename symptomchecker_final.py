@@ -66,13 +66,13 @@ def diagnose(user_symptoms, conditions):
     print("\nPossible Conditions:")
     for name, score in ranked:
         if score > 0:
-            print(f" - {name}: {score * 100}%") #Calculate percentage of likeliness
+            print(f" - {name}: {score * 100:.1f}%") #Calculate percentage of likeliness
 
-        best_match, best_score = ranked[0] #Gets best match
-        if best_score > 0:
-            for condition in conditions:
-                if condition.name == best_match:
-                    condition.get_treatments()
-        else:
-            print("No matches found.")
+    best_match, best_score = ranked[0] #Gets best match
+    if best_score > 0:
+        for condition in conditions:
+            if condition.name == best_match:
+                condition.get_treatments()
+    else:
+        print("No matches found.")
 
