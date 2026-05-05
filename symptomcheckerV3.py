@@ -1,5 +1,3 @@
-from flask import Flask, request
-
 #Revised using object-oriented programming
 class Condition:
     def __init__(self, name, symptoms, treatments):
@@ -44,60 +42,38 @@ all_symptoms = set()
 for c in conditions:
     all_symptoms |= c.symptoms #adds sypmtoms into all_symptoms
 
+def user_questionaire():
+    user_symptoms = set()
+    print("Answer Yes/No to each symptom:\n")
+    for symptom in sorted(all_symptoms):
+        answer = input(f"Do you have {symptom}? ").strip().lower()
+        if answer == "yes":
+            user_symptoms.add(symptom)
+    return user_symptoms
+
 def score_all(user_symptoms, conditions): #Scores conidition based on symptoms
     scores = {}
     for condition in conditions:
         scores[condition.name] = condition.score(user_symptoms)
     return scores
 
-#Flask web app
-app = Flask(__name__)
-
-@app.route("/")
-def home():
-    #Build checkboxes from symptoms
-    checkboxes = ""
-    for symptom in sorted(all_symptoms):
-        checkboxes += f'<input type="checkbox" name="symptoms" value="{symptom}"> {symptom}<br>'
-
-    return f"""
-    <h1>Symptom Checker</h1>
-    <p>Check all symptoms you have:</p>
-    <form action="/diagnose" method="post">
-        {checkboxes}
-        <br>
-        <button type="submit">Diagnose</button>
-    </form>
-    """
-@app.route("/diagnose", methods=["POST"])
-def diagnose():
-    user_symptoms = set(request.form.getlist("symptoms"))
-
-    if not user_symptoms:
-        return '<p>Please select at least one symtpom.</p><a href="/">Back</a>'
-
+def diagnose(user_symptoms, conditions):
     results = score_all(user_symptoms, conditions)
     ranked = sorted(results.items(), key = lambda x: x[1], reverse = True) #Sort based on score from largest to smallest
 
-    output = "<h1>Possible Conditions:</h1><ul>"
+    print("\nPossible Conditions:")
     for name, score in ranked:
         if score > 0:
-            output += f"<li>{name}: {score * 100:.1f}%</li>" #Calculate percentage of likeliness
-    output += "</ul>"
+            print(f" - {name}: {score * 100:.1f}%") #Calculate percentage of likeliness
 
     best_match, best_score = ranked[0] #Gets best match
     if best_score > 0:
         for condition in conditions:
             if condition.name == best_match:
-                output += f"<h2>Treatments for {best_match}:</h2><ul>"
-                for treatment in condition.treatments:
-                    output += f"<li>{treatment}</li>"
-                output += "</ul>"
+                condition.get_treatments()
     else:
-        output += "<p>No matches found.</p>"
-
-    output += '<br><a href="/">Start over</a>'
-    return output
+        print("No matches found.")
 
 if __name__ == "__main__":
-   app.run(debug=True, host="0.0.0.0", port=5000)
+    symptoms = user_questionaire()
+    diagnose(symptoms, conditions)
