@@ -47,7 +47,9 @@ def user_questionaire():
     print("Answer Yes/No to each symptom:\n")
     for symptom in sorted(all_symptoms):
         answer = input(f"Do you have {symptom}? ").strip().lower()
-        if answer == "
+        if answer == "yes":
+            user_symptoms.add(symptom)
+    return user_symptoms
 
 def score_all(user_symptoms, conditions): #Scores conidition based on symptoms
     scores = {}
