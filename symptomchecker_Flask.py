@@ -60,39 +60,39 @@ def home():
     for symptom in sorted(all_symptoms):
         checkboxes += f'<input type="checkbox" name="symptoms" value="{symptom}"> {symptom}<br>'
 
-        return f"""
-        <h1>Symptom Checker</h1>
-        <p>Check all symptoms you have:</p>
-        <form action="/diagnose" method="post">
-            {checkboxes}
-            <br>
-            <button type="submit">Diagnose</button>
-        </form>
-        """
+    return f"""
+    <h1>Symptom Checker</h1>
+    <p>Check all symptoms you have:</p>
+    <form action="/diagnose" method="post">
+        {checkboxes}
+        <br>
+        <button type="submit">Diagnose</button>
+    </form>
+    """
 @app.route("/diagnose", methods=["POST"])
 def diagnose():
     user_symptoms = set(request.form.getlist("symptoms"))
 
     if not user_symptoms:
-        return '<p>Please select at least one symtpom.</p><a href="">Back</a>'
+        return '<p>Please select at least one symtpom.</p><a href="/">Back</a>'
 
     results = score_all(user_symptoms, conditions)
     ranked = sorted(results.items(), key = lambda x: x[1], reverse = True) #Sort based on score from largest to smallest
 
-    output = "<h1>Possible Conditions:</h1><u1>"
+    output = "<h1>Possible Conditions:</h1><ul>"
     for name, score in ranked:
         if score > 0:
             output += f"<li>{name}: {score * 100:.1f}%</li>" #Calculate percentage of likeliness
-    output += "</u1>"
+    output += "</ul>"
 
     best_match, best_score = ranked[0] #Gets best match
     if best_score > 0:
         for condition in conditions:
             if condition.name == best_match:
-                output += f"<h2>Treatments for {best_match}:</h2><u1>"
+                output += f"<h2>Treatments for {best_match}:</h2><ul>"
                 for treatment in condition.treatments:
                     output += f"<li>{treatment}</li>"
-                output += "</u1>"
+                output += "</ul>"
     else:
         output += "<p>No matches found.</p>"
 
