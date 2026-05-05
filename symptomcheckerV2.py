@@ -28,7 +28,7 @@ cold = Condition(
 strep = Condition(
     "Strep Throat",
     {"sore throat", "fever", "difficulty swallowing"},
-    ["Antibiotics", "Acetminophen or ibuprofen", "Hydration", "Rest"]
+    ["Antibiotics", "Acetaminophen or ibuprofen", "Hydration", "Rest"]
 )
 food_poisoning = Condition(
     "Food Poisoning",
