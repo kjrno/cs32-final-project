@@ -66,4 +66,6 @@ def diagnose(user_symptoms, conditions):
         if condition.name == best_match:
             condition.get_treatments()
 
-diagnose(user_symptoms1, conditions)
+if __name__ == "__main__":
+    symptoms = user_questionaire()
+    diagnose(symptoms, conditions)
