@@ -8,8 +8,8 @@ Program that gives user a questionaire to assess user's symptoms and returns a d
 I wanted to create this project as I believe it will enable people more accurately diagnose themselves at home. This will allow people to get quickier diagnoses and also reduce unnecessary doctor visits, allowing doctors to spend time and resources on more severe medical situations.
 
 # Instructions
-Run python3 symptomcheckerV2.py
-Can edit user_symptoms based on what set of symptoms you want to test.
+Run python3 symptomchecker_final.py
+Follow instructions to the webpage.
 
 # Next Steps
 Create a user interface in an app that could be used on mobile devices to diagnose users. Include larger datasets to make the diagnosis more accurate. Possibly use machine learning and train it on patient data so the algorithm is more accurate.

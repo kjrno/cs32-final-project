@@ -44,7 +44,7 @@ all_symptoms = set()
 for c in conditions:
     all_symptoms |= c.symptoms #adds symptoms into all_symptoms
 
-def score_all(user_symptoms, conditions): #Scores conidition based on symptoms
+def score_all(user_symptoms, conditions): #Scores condition based on symptoms
     scores = {}
     for condition in conditions:
         scores[condition.name] = condition.score(user_symptoms)
@@ -74,7 +74,7 @@ def diagnose():
     user_symptoms = set(request.form.getlist("symptoms")) #Gets checked symptoms from the form
 
     if not user_symptoms:
-        return '<p>Please select at least one symtpom.</p><a href="/">Back</a>'
+        return '<p>Please select at least one symptom.</p><a href="/">Back</a>'
 
     results = score_all(user_symptoms, conditions)
     ranked = sorted(results.items(), key = lambda x: x[1], reverse = True) #Sort based on score from largest to smallest
